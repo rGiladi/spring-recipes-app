@@ -57,11 +57,11 @@ public class RecipesApplication extends SpringBootServletInitializer implements 
 
 	@Override
 	public void run(String... arg0) throws Exception {
+		System.out.println(new File("images").isDirectory() + " Is Directory?");
 		if ( userService.findByUsername("snakemzm") == null ) {
 			createUserWithRoles();
 		}
 		manageFiles();
-		// deleteImages();
 	}
 	
 private void createUserWithRoles() {
@@ -88,21 +88,6 @@ private void createUserWithRoles() {
 	private void manageFiles() {
 		
 		File dir2 = new File("tmp_images");
-		if (dir2.exists())
-		try {
-			FileUtils.deleteDirectory(dir2);
-			dir2.mkdirs();
-			}catch (Exception ex) {
-				if (!dir2.exists())
-					dir2.mkdirs();
-			}
-		else {
-			dir2.mkdirs();
-		}
-	}
-	
-	private void deleteImages() {
-		File dir2 = new File("images");
 		if (dir2.exists())
 		try {
 			FileUtils.deleteDirectory(dir2);
