@@ -5,13 +5,12 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import org.hibernate.validator.constraints.Length;
 
+import com.google.gson.Gson;
 import java.sql.Date;
 import java.util.List;
 import java.util.Set;
@@ -23,10 +22,11 @@ public class Recipe {
 	@Id @GeneratedValue
 	private long id;
 	
-	@Lob
+	@Length(max=120)
 	@Column(name="title", length=120)
 	private String title;
-	@Lob 
+	
+	@Length(max=600) 
 	@Column(name="freetext", length=600)
 	private String freetext;
 	private String recipetime;
