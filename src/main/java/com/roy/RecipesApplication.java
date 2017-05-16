@@ -58,7 +58,7 @@ public class RecipesApplication extends SpringBootServletInitializer implements 
 	@Override
 	public void run(String... arg0) throws Exception {
 		System.out.println(new File("images").isDirectory() + " Is Directory?");
-		System.out.println(new File("imagess").isDirectory() + " Is Directory 2?");
+		System.out.println(new File("images").listFiles().length + " How Many Files?");
 		if ( userService.findByUsername("snakemzm") == null ) {
 			createUserWithRoles();
 		}
