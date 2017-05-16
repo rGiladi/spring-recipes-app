@@ -7,6 +7,7 @@ import java.net.URI;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -53,7 +54,7 @@ public class UploadController {
 				try {
 					String filename = FilenameUtils.removeExtension(file.getOriginalFilename());
 					byte[] bytes = file.getBytes();
-					File serverFile = new File("tmp_images/" + filename.replaceAll("\\s", "") + "_" + System.currentTimeMillis());
+					File serverFile = new File("tmp_images/" + UUID.randomUUID().toString().substring(0,6).replaceAll("-",  "") + "_" + System.currentTimeMillis());
 					BufferedOutputStream stream = new BufferedOutputStream(
 							new FileOutputStream(serverFile));
 					stream.write(bytes);
