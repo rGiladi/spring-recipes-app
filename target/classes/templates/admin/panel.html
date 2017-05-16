@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="he_IL" dir="rtl" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	<title>ארוחות</title>
+	<div th:replace="template :: styles"></div>
+</head>
+<body>
+<div th:replace="template :: navigation"></div>
+<div th:replace="template :: user_menu"></div>
+<div th:replace="template :: page_overlay"></div>
+
+
+<div class="container-fluid">
+	<div style="margin:0 200px">
+		<ul>
+			<li><a th:href="@{/admin/ingridients}">עריכת מוצרים</a></li>
+			<li><a th:href="@{/admin/reports/recipes}">דיווחים - מתכונים <span class="badge" th:classappend="${recipes_size} > 0 ? 'badge-warning' : 'badge-default'" th:text="' ' + ${recipes_size}"></span></a></li>
+			<li><a th:href="@{/admin/reports/menus}">דיווחים - תפריטים <span class="badge" th:classappend="${menus_size} > 0 ? 'badge-warning' : 'badge-default'" th:text="' ' + ${menus_size}"></span> </a></li>
+		</ul>
+	</div>
+</div>
+
+
+<div th:replace="template :: scripts"></div>
+</body>
+</html>

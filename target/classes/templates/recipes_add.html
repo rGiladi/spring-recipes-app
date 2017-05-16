@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he_IL" xmlns="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	<title>ארוחות</title>
+	<head th:replace="template :: styles"></head>
+	<link rel="stylesheet" href="/css/addrecipe.css" />
+	<link rel="stylesheet" href="/css/ingridients_price.css" />
+	<link sec:authorize="isAnonymous()" rel="stylesheet" href="/css/login_register.css" />
+</head>
+<body>
+<div th:replace="template :: navigation"></div>
+<div th:replace="template :: user_menu"></div>
+<div th:replace="template :: page_overlay"></div>
+<div class="container-fluid">
+	<div class="content_wrapper">
+		<div sec:authorize="isAuthenticated()" class="recipes_wrapper">
+			<div class="recipes_addrecipe">
+				<form action="#" th:action="@{/addrecipe}" th:object="${recipe}" method="post" class="row add_recipe_form">
+					<div class="col-lg-7 form_wrapper">
+						<h2 style="margin-bottom: 25px;">מתכון חדש</h2>
+						
+						<div class="addrecipe_details_wrapper">
+							<input type="text" class="add_recipe_title form-control" placeholder="כותרת" />
+							<p class="re_cha_t">נשארו עוד <span>120</span> תווים</p>
+							<textarea class="add_recipe_freetext form-control" rows="7" placeholder="טקסט חופשי"></textarea>
+							<p class="re_cha">נשארו עוד <span>550</span> תווים</p>
+							<input type="number" class="add_recipe_preparetime form-control" placeholder="זמן הכנה (בדקות)" min="1" />
+							<input type="number" class="add_recipe_amount form-control" placeholder="כמה מנות?" />
+							<div class="col-lg-9 products_col">
+								<h4 style="display:inline-block">מוצרים <i class="fa fa-plus-circle add_recipe_product" aria-hidden="true"></i></h4>
+								<h4><span>&#8362;</span><span id="sum">0</span> </h4>
+								<div class="addrecipe_products_wrapper">
+									<div th:each="i : ${#numbers.sequence(0, 20)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group" >
+										<input  type="text" class="product_ing form-control" />
+										<input  type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group" style="margin: 0 0 10px 0">
+								<div class="adds" style="display: inline-block;">
+									<input name="vegetarian" type="checkbox" th:field="*{vegetarian}"/>
+									<label>צמחוני</label>
+				
+									<input name="vegan" type="checkbox" th:field="*{vegan}" />
+									<label>טבעוני</label>
+									
+									<input name="kosher" type="checkbox" th:field="*{kosher}"/>
+									<label>כשר</label>
+								</div>
+								<input name="spicy" type="checkbox" th:field="*{spicy}"/>
+								<label>ללא חריף</label>
+									
+								<input name="gluten" type="checkbox" th:field="*{gluten}" />
+								<label>ללא גלוטן</label>	
+							</div>
+							<button type="button" class="btn btn-secondary btn-md addrecipe_moreoptions">עוד אפשרויות<i class="fa fa-caret-down" aria-hidden="true" style="margin-right:10px;"></i></button>
+							<div class="col-lg-6 addrecipe_options" style="display:none; padding-right: 0;">
+								<select th:field="*{recipetime}" id="addrecipe_select_recipetime" class="form-control">
+									<option selected="selected" th:value="''">שעת ארוחה</option>
+									<option th:value="בוקר">בוקר</option>
+									<option th:value="צהריים">צהריים</option>
+									<option th:value="ערב">ערב</option>
+									<option th:value="כללי">כללי</option>
+								</select>
+								<select th:field="*{recipetype}" id="addrecipe_select_recipetype" class="form-control">
+									<option selected="selected" th:value="''">סוג ארוחה</option>
+									<option th:value="קלה" >קלה</option>
+									<option th:value="מלאה">מלאה</option>
+								</select>
+							</div>
+							<input type="file" name="file" style="display:none" accept="image/*" />
+							<div class="btn_upload_file box_upload_file">
+								<p class="upload_file_text">העלה תמונה</p>
+							</div>
+							<img id="prev_img" class="btn_upload_file adding_rec" width="200px" height="150px" style="margin-top: 20px;" />
+							<input type="button" class="btn btn-secondary add_recipe_submit" value="הוסף ארוחה" />
+							<div class="progress" style="margin-bottom: 30px; margin-top: 20px; display: none;">
+								<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>	
+							</div>
+						</div>
+					</div>
+					<div th:replace="template :: ingridients_prices"></div>
+				</form>
+			</div>
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<div class="form_wrapper col-lg-4" style="margin-top: 140px;">
+			<h3 style="margin-bottom:50px;">רק משתמשים רשומים יכולים להוסיף ארוחות</h3>
+			<a style="font-size:1.4em;" th:href="@{/login}">כניסה לחשבון</a>
+			<p style="margin-top:1rem;">או</p>
+			<a style="font-size:1.4em;" th:href="@{/registration}">משתמש חדש</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div th:replace="template :: scripts"></div>
+<script src="js/js_addrecipe.js"></script>
+<script>
+	$('.add_recipe_preparetime').val("");
+</script>
+</body>
+</html>

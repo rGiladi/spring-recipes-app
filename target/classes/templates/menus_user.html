@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he_IL" xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>תפריטים</title>
+	<head th:replace="template :: styles"></head>
+	<link rel="stylesheet" href="/css/menus.css" />
+	<link rel="stylesheet" href="/css/menus_user.css" />
+	<link rel="stylesheet" href="/css/mq_me.css" />
+	
+</head>
+<body>
+
+<div th:replace="template :: navigation"></div>
+<div th:replace="template :: user_menu"></div>
+<div th:replace="template :: page_overlay"></div>
+
+<div class="container-fluid">
+<div class="row content_wrapper">
+	<div class="col-lg-8 menus_col">
+	<div class="recipes_menus">
+		<div class="mm_tabs">
+			<ul class="nav nav-tabs">
+			  <li class="nav-item"><a class="nav-link" th:href="@{/menus}">תפריטים של אנשים</a></li>
+			  <li class="nav-item"><a class="nav-link active">התפריטים שלי</a></li>
+			</ul>
+			<div class="tab-content">
+				<div id="menu_user_menus" role="tabpanel">
+					<ul style="padding:0;">
+						<li th:each="menu : ${user_menus}" class="menu_li" th:id="${menu.id}">
+							<div class="menu_details">
+								<p class="mm_title"><i class="fa fa-pencil" aria-hidden="true"></i><span th:text="${menu.title}"></span></p>
+								<p class="mm_price"><i class="fa fa-ils" aria-hidden="true"></i><span th:text="${menu.price} % 1 != 0 ? ${menu.price} : ${#numbers.formatDecimal(menu.price, 0, 0)} + ' שקלים '"></span></p>
+								<p class="menu_likes"><i class="fa fa-heart" aria-hidden="true"></i><span th:text="${#sets.size(menu.usersLiked)}"></span></p>
+								<div class="uploader_wrapper">
+									<p class="menu_uploaded" th:text="' הועלה ב ' + ${menu.pub_date}"></p>
+									<p class="menu_uploader"  th:text="${menu.user} ? ${menu.user.getUsername()} : 'אנונימי' "></p>
+								</div>
+								<div class="toshow" style="display:none;">
+									<div class="mm_freetext" th:text="${menu.freeText}"></div>
+									<div class="toshow_publish_title mm_published" th:if="${menu.published} == 1">הורד מפרסום</div>
+									<div class="toshow_publish_title" th:if="${menu.published} == 0">פרסום לכולם</div>
+									
+									<div class="toshow_menu_recipes">
+										<div  th:unless="${#lists.isEmpty(menu.productsRecipe1)}">
+											<p class="menu_recipes_title">ארוחה 1</p>
+											<ul>
+												<li th:each="p, iter : ${menu.productsRecipe1}" th:text="${p} + ' - ' + ${menu.pricesRecipe1[iter.index]}"></li>
+											</ul>
+										</div>
+										<div th:unless="${#lists.isEmpty(menu.productsRecipe2)}">
+											<p class="menu_recipes_title">ארוחה 2</p>
+											<ul>
+												<li th:each="p, iter : ${menu.productsRecipe2}" th:text="${p} + ' - ' + ${menu.pricesRecipe2[iter.index]}"></li>
+											</ul>						
+										</div>
+										<div th:unless="${#lists.isEmpty(menu.productsRecipe3)}">
+											<p class="menu_recipes_title">ארוחה 3</p>
+											<ul>
+												<li th:each="p, iter : ${menu.productsRecipe3}" th:text="${p} + ' - ' + ${menu.pricesRecipe3[iter.index]}"></li>
+											</ul>
+										</div>
+										<div th:unless="${#lists.isEmpty(menu.productsRecipe4)}">
+											<p class="menu_recipes_title">ארוחה 4</p>
+											<ul>
+												<li th:each="p, iter : ${menu.productsRecipe4}" th:text="${p} + ' - ' + ${menu.pricesRecipe4[iter.index]}"></li>
+											</ul>
+										</div>
+										<div th:unless="${#lists.isEmpty(menu.productsRecipe5)}">
+											<p class="menu_recipes_title">ארוחה 5</p>
+											<ul>
+												<li th:each="p, iter : ${menu.productsRecipe5}" th:text="${p} + ' - ' + ${menu.pricesRecipe5[iter.index]}"></li>
+											</ul>
+										</div>
+										<div th:unless="${#lists.isEmpty(menu.productsRecipe6)}">
+											<p class="menu_recipes_title">ארוחה 6</p>
+											<ul>
+												<li th:each="p, iter : ${menu.productsRecipe6}" th:text="${p} + ' - ' + ${menu.pricesRecipe6[iter.index]}"></li>
+											</ul>
+										</div>
+										<div th:unless="${#lists.isEmpty(menu.productsRecipe7)}">
+											<p class="menu_recipes_title">ארוחה 7</p>
+											<ul>
+												<li th:each="p, iter : ${menu.productsRecipe7}" th:text="${p} + ' - ' + ${menu.pricesRecipe7[iter.index]}"></li>
+											</ul>
+										</div>
+										<div th:unless="${#lists.isEmpty(menu.productsRecipe8)}">
+											<p class="menu_recipes_title">ארוחה 8</p>
+											<ul>
+												<li th:each="p, iter : ${menu.productsRecipe8}" th:text="${p} + ' - ' + ${menu.pricesRecipe8[iter.index]}"></li>
+											</ul>
+										</div>
+									</div>
+								
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- Show menu -->
+		<div class="show_mm_wrapper" style="display:none;">
+			<div class="showmm_close_wrapper">
+				<input name="_csrf" type="hidden" th:value="${_csrf.token}" />
+	
+				<i class="fa fa-users" aria-hidden="true"></i>
+				<a id="edit_href" title="ערוך מתכון" th:href="@{~/} + 'user/' + ${#authentication.name} + '/edit_menu/'"><i class="fa fa-pencil fa_tools edit_p" aria-hidden="true"></i></a>
+				<i class="fa fa-trash" data-toggle="modal" data-target="#promptDelete" aria-hidden="true" title="הסר תפריט"></i>
+				<i class="fa fa-times-circle showmm_close" aria-hidden="true"></i>
+			</div>
+			<div class="show_menu">
+				<h2 id="show_mm_title">תפריט מאוזן</h2>
+				<p class="showmenu_menu_price"><i class="fa fa-ils" aria-hidden="true"></i><span id="show_mm_price"> שקלים 15</span></p>
+				<div id="show_mm_freetext">טקסט חופשי</div>
+				<div id="showmenu_recipes"></div>
+			</div>
+		</div>
+		
+		<!-- Modals  -->
+		<div class="modal fade" id="promptDelete" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-body">
+		        אי אפשר לשחזר תפריט שנמחק, האם להמשיך?
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+		        <button type="button" class="btn btn-primary btn_delete_menu">מחק</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+	</div>
+	</div>
+	<div class="col-lg-3 adds_col">
+		<img src="/photos/vbg2.jpg" style="width:120%; margin-top: 41px;" />
+		<img src="/photos/vbg.jpg" style="width:120%; margin-top: 20px; margin-bottom: 30px;" />
+	</div>
+</div>
+</div>
+<div th:replace="template :: scripts"></div>
+<script src="/js/show_menu_recipe.js"></script>
+<script src="/js/show_menu_user.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+.mm_prices_ing_list {
+	margin: 0;
+	list-style: none;
+	padding: .75rem 1.25em;
+}
+
+.card-header {
+	cursor: pointer;	
+}
+
+.mmpil_price {
+	float: left;
+}
+
+.ing_edit {
+	margin: 20px 80px;
+}
+
+.new_ing {
+	margin-bottom: 25px;
+}
+
+.ing_name {
+	width: 50%;
+	margin-bottom: 10px;
+}
+
+.category_name {
+	width: 50%;
+}
+
+.mmpil_price2 {
+	display: none;
+	float: left;
+}
+
+
+/* IngTable */
+
+.ingridients_table, .form_wrapper {
+	background-color: #fff;
+	padding: 15px;
+	height: 100%;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.ingridients_table {
+	margin-right: 40px;
+}
+
+
+/* Media Queries */
+
+@media screen and ( max-width: 1100px ) {
+	.recipes_wrapper { 
+		margin: 20px 30px 20px 15px;
+	}
+	
+	.form_wrapper {
+		width: 50%;
+	}
+	
+	.ingridients_table {
+		width: 40%;
+	}
+}
+
+@media screen and ( max-width: 843px ) {
+	.form_wrapper {
+		width: 60%;
+		margin-right: 0;
+	}
+	.ingridients_table {
+		margin-right: 20px;
+		width: 35%;
+	}	
+}
+
+@media screen and ( max-width: 760px ) {
+	.ingridients_table {
+		display: none;
+	}
+	
+	.form_wrapper {
+		width: 98%;
+		margin-top: 15px;
+	}
+}	

@@ -1,0 +1,21 @@
+/* Toolbar */
+
+.fa-users {
+	font-size: 22px;
+	float: right;
+	position: relative;
+	top: 1px;
+	color: #4D6684;
+	cursor: pointer;	
+}
+
+.fa_tools {
+	font-size: 25px;
+	float: right;
+	color: #4D6684;
+	cursor: pointer;
+}
+
+.fa-users:hover, .fa_tools:hover {
+	color:  #1499D3 ;
+}

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: recipes_webapp
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: roy
+Implementation-Vendor-Id: com.roy.recipes
+Build-Jdk: 1.8.0_121
+Implementation-URL: http://projects.spring.io/spring-boot/recipes_weba
+ pp/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

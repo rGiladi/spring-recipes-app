@@ -1,0 +1,169 @@
+
+/* Nav */
+
+.menu_recipes {
+	color: #00B796 !important;
+	padding: .5em .5em;
+}
+
+.getby {
+	margin-left: 30px;
+	border-left: 1px solid #6E9ECF;
+}
+
+/* Form-Recipe-Search Styles */
+
+.form-row {
+	padding-bottom: 20px;
+	border-bottom: 1px solid #6E9ECF;
+}
+
+.getby_title {
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.custom_form_label {
+	margin-right: 20px;
+	margin-bottom: 0;
+}
+
+.form-check-input {
+	right: 0px;
+	margin-left: 0;
+}
+
+.form-check {
+	margin: 0;
+	margin-top: 10px;
+}
+
+.form-control {
+	margin-top: 10px;
+}
+
+/* Recipes */
+
+.recipes_col {
+	margin-right: 30px;
+}
+
+.recipes_showby {
+	margin-bottom: 20px;
+}
+
+.recipe_row {
+	position: relative;
+	margin: 10px 1px 10px 0;
+	padding: 10px 5px;
+	background-color: #fff;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	cursor: pointer;
+}
+
+.recipe_row:hover {
+	background-color: #D4EDF4;
+}
+
+.recipe_content_wrapper {
+	position: relative;
+	left: 35px;
+}
+
+.recipe_content {
+	font-size: 18px;
+}
+
+.recipe_content p, .recipe_uploader p {
+	margin-bottom: 0;
+}
+
+.fa-shopping-basket, .recipe_heart {
+	font-size: 17px;
+	position: relative;
+	left: 3px;
+	margin-left: 5px !important;
+}
+
+.recipe_likes {
+	margin-top: 25px;
+	margin-bottom: 0;
+}
+
+.recipe_uploader {
+	position: absolute;
+	bottom: 1px;
+	left: -10px;
+	font-size: 0.8em;
+	opacity: 0.7;
+}
+
+.fa {
+	margin-left: 10px;
+}
+
+.toshow_freetext_real {
+	font-size:18px;
+	margin: 0;
+}
+
+.recipe_img {
+	height: 160px;
+	width: 200px;
+}
+
+/* Show Recipe */
+
+.show_recipe {
+	padding: 20px;
+	background-color: #ffffec;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#showrecipe_recipe_name {
+	margin-bottom: 20px;
+	text-decoration: underline;
+}
+
+.showrecipe_recipe_time, .showrecipe_recipe_price {
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+#showrecipe_ingridients_list {
+	margin-top: 20px;
+}
+
+.showrecipe_ingridients_title {
+	font-size: 22px;
+	text-decoration: underline;
+}
+#showrecipe_ingridients_list {
+	font-size: 20px;
+}
+
+#show_mm_freetext {
+	margin-top: 20px;
+}
+
+.showrecipe_ils {
+	font-size: 20px;
+	font-family: 'Alef', sans-sarif;
+}
+
+.fa_ils_showrecipe {
+	font-size: 14px;
+}	
+
+.showrecipe_fix {
+	margin-right: 22px;
+}
+
+
+
+
+
+
+
+
+

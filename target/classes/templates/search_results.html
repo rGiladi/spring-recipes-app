@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="he_IL" dir="rtl" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	<title>ארוחות</title>
+	<head th:replace="template :: styles"></head>
+	<link rel="stylesheet" href="/css/home.css" />
+	<link rel="stylesheet" href="/css/mq.css" />
+	<style>
+		.menu_recipes {
+			color: #fff !important;
+		}
+	</style>
+</head>
+<body>
+<div th:replace="template :: navigation"></div>
+<div th:replace="template :: user_menu"></div>
+<div th:replace="template :: page_overlay"></div>
+
+<div class="container-fluid recipes_page">
+	<div class="row content_wrapper">
+		<div class="col-8 recipes_col" style="margin:auto;">
+			<div class="recipes_wrapper">
+			<!-- Main Page -->
+				<div class="mm_tabs">
+				<h1>תוצאות חיפוש</h1>
+					<div class="tab-content">
+						<div id="recipes_community_recipes" class="tab-pane active"  role="tabpanel">
+							<div th:each="recipe : ${recipes}" class="recipe_row row" th:id="${recipe.id}" th:unless="${recipes == null}">
+								<div class="col-lg-4 recipe_img_wrapper">
+									<img class="recipe_img img-fluid" width="200" height="150" th:src="@{'/image/' + ${recipe.image} + '/' }" />
+								</div>
+								<div class="col-lg-8 recipe_content_wrapper">
+									<div class="recipe_content">
+										<div class="mm_title"><i class="fa fa-pencil" aria-hidden="true"></i><span class="orig" th:text="${recipe.title}"></span><span class="substr"></span></div>
+										<div class="mm_price"><i class="fa fa-ils" aria-hidden="true"></i><span th:text="${recipe.price} % 1 != 0 ? ${recipe.price} : ${#numbers.formatDecimal(recipe.price, 0, 0)} + ' שקלים'"></span></div>
+										<div class="recipe_time"><i class="fa fa-clock-o" aria-hidden="true"></i><span th:if="${recipe.time} !=null" th:text="${recipe.time} % 1 != 0 ? ${recipe.time} : ${#numbers.formatDecimal(recipe.time, 0, 0)} + ' דקות הכנה  '"></span></div>
+										<div class="recipe_amount"><i class="fa fa-shopping-basket" aria-hidden="true"></i><span th:text="${recipe.amount} % 1 != 0 ? ${recipe.amount} + ' מנות  ' : ${#numbers.formatDecimal(recipe.amount, 0, 0)} + ' מנות  '"></span></div>
+										<div class="recipe_likes"><i class="fa fa-heart" aria-hidden="true"></i><span class="mm_lkn" th:text="${#sets.size(recipe.usersLiked)}"></span></div>	
+									</div>
+									<div class="recipe_uploader">
+										<p class="recipe_uploaded" th:text=" 'הועלה ב ' + ${recipe.dateField}">הועלה ב 15/2/96</p>
+										<p class="recipe_by"  th:text="${recipe.user} ? ${recipe.user.getUsername()} : 'אנונימי' "></p>
+									</div>
+									
+									<div class="recipe_toshow mm_toshow" style="display:none;">
+										<div class="liked_check" th:classappend="${#sets.contains(recipe.usersLiked, user_id)} ? 'user_liked' : ''" th:unless="${user_id == null}"></div>
+										<div class="reported_check" th:classappend="${#sets.contains(recipe.usersReported, user_id)} ? 'user_reported' : ''" th:unless="${user_id == null}"></div>
+										<div>
+											<p th:text="${recipe.freetext}" class="toshow_freetext toshow_freetext_real mm_freetext"></p>
+										</div>
+										<ul class="toshow_ingridients_list">
+											<li th:each="ing, iter : ${recipe.products}"><span th:text="${ing} + ' - ' + ${recipe.prices[iter.index]}" class="showrecipe_ils"></span><i class="fa fa-ils fa_ils_showrecipe" aria-hidden="true"></i></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Show Recipe -->
+				
+				<div class="show_mm_wrapper" style="display:none">
+					<div class="showmm_close_wrapper">
+						<input name="_csrf" type="hidden" th:value="${_csrf.token}" />
+						
+						<i class="fa fa-heart showmm_like" aria-hidden="true"></i>
+						<i class="fa fa-exclamation-circle showmm_report" aria-hidden="true"></i>
+						<i class="fa fa-times-circle showmm_close" aria-hidden="true"></i>
+					</div>
+					<div class="show_recipe">
+						<h2 id="show_mm_title"></h2>
+						<p class="showrecipe_recipe_price"><i class="fa fa-ils" aria-hidden="true"></i><span id="show_mm_price"></span></p>
+						<p class="showrecipe_recipe_time"><i class="fa fa-clock-o" aria-hidden="true"></i><span id="showrecipe_recipe_time"></span></p>
+						<div id="show_mm_freetext"></div>
+						<div id="showrecipe_ingridients_list">
+							<p class="showrecipe_ingridients_title">מצרכים</p>
+							<div id="ing_list"></div>
+						</div>
+						<img class="img-fluid" id="showrecipe_img" src="" /> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div th:replace="template :: scripts"></div>
+<script>
+	$(document).ready(function() {
+		$('body').fadeIn(100);
+	
+	}); 
+</script>
+<script src="/js/show_menu_recipe.js"></script>
+<script src="/js/commons.js"></script>
+</body>
+</html>

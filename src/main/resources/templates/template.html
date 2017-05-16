@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="he-il" dir="rtl" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    
+<head class="styles" th:fragment="styles" th:remove="tag">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alef:700" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+	<link rel="stylesheet" href="/css/navigation.css" />
+	<link rel="stylesheet" href="/css/toast.css" />
+</head>
+<body>
+	<div class="topbar" th:fragment="navigation">
+		<a href="#" class="open_menu"><i class="fa fa-bars" aria-hidden="true"></i></a>
+		<a sec:authorize="isAnonymous()" th:href="@{/login}" class="menu_nav_link user_menu_message"><i class="fa fa-user-o" style="margin: 0 8px;" aria-hidden="true"></i>אורח</a>
+		<a sec:authorize="isAuthenticated()" th:href="@{/}" class="menu_nav_link user_menu_message"><i class="fa fa-user-o" style="margin: 0 8px;" aria-hidden="true"></i><span th:text="${#authentication.name}"></span></a>
+		<div class="recipes_menus_nav">
+			<a class="menu_nav_link menu_recipes" th:href="@{/}" style="margin-right:0;"><i class="fa fa-cutlery menu_icon" aria-hidden="true"></i><span class="recipes_tt">מתכונים</span></a>
+			<a class="menu_nav_link menu_menus" th:href="@{/menus}"><i class="fa fa-window-maximize menu_icon menu_icon_menus" aria-hidden="true"></i><span class="menus_tt">תפריטים</span></a>
+			<div class="search_wrapper" style="display:inline-block;">
+				
+				<form action="#" th:action="@{/search}" th:object="${search}" method="post" class="search_form">
+					<input type="text" th:field="*{freetext}" class="search_input " placeholder="חפש ארוחה" />
+					<i class="fa fa-search btn_search_recipe" aria-hidden="true"></i>
+				
+					<div class="search_box ">
+						<i class="fa fa-times-circle close_search_box" aria-hidden="true"></i>
+						
+							<div class="inputs ">
+								<input th:field="*{price}" class="form-control getby_price " type="number" placeholder="עד מחיר"  min="0" autocomplete="off"  />
+								<input th:field="*{time}" class="form-control getby_time " type="number" placeholder="עד זמן הכנה"  min="0" />
+								<select th:field="*{recipetime}" class="getby_select_recipetime form-control ">
+									<option th:value="''" selected="selected" >שעת ארוחה</option>
+									<option th:value="'בוקר'">בוקר</option>
+									<option th:value="'צהריים'">צהריים</option>
+									<option th:value="'ערב'">ערב</option>
+									<option th:value="'כללי'">כללי</option>
+								</select>
+								<select th:field="*{recipetype}" class="getby_select_recipetype form-control ">
+									<option th:value="''" selected="selected">סוג ארוחה</option>
+									<option th:value="'קלה'">קלה</option>
+									<option th:value="'מלאה'">מלאה</option>
+								</select>
+							</div>
+							<div class="form-group s_checkboxes">
+								<div class="check_g1" style="display:inline-block;">
+									<input class="" name="vegetarian" type="checkbox" th:field="*{vegetarian}" />
+									<label class="">צמחוני</label>
+								
+									<input class="" name="vegan" type="checkbox" th:field="*{vegan}"/>
+									<label class="">טבעוני</label>
+								</div>
+								<div class="check_g2" style="display:inline-block;">
+									<input class="" name="kosher" type="checkbox" th:field="*{kosher}"/>
+									<label class="">כשר</label>
+										
+									<input class="" name="spicy" type="checkbox" th:field="*{spicy}"/>
+									<label class="">ללא חריף</label>
+								</div>
+								<div class="check_g3" style="display:inline-block;">
+									<input class="" name="gluten" type="checkbox" th:field="*{gluten}" />
+									<label class="">ללא גלוטן</label>	
+								</div>
+							</div>	
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="toast"></div>
+	</div>
+	
+	<div class="user_menu" th:fragment="user_menu">
+		<div class="user_menu_opening"></div>
+		<ul class="user_menu_ul">
+			<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/panel}">ניהול</a></li>
+			<li class="um_divider">מתכונים</li>
+			<li><a class="menu_addrecipe" th:href="@{/addrecipe}">מתכון חדש</a></li>
+			<li sec:authorize="isAuthenticated()"><a class="menu_myRecipes" th:href="@{~/} + 'user/' + ${#authentication.name} + '/recipes'">המתכונים שלי</a></li>
+			<li sec:authorize="isAuthenticated()"><a class="menu_RecipesLiked" th:href="@{~/} + 'user/' + ${#authentication.name} + '/liked/recipes'">מתכונים שאהבתי</a></li>
+			<li class="um_divider">תפריטים</li>
+			<li><a class="menu_addmenu" th:href="@{/addmenu}">תפריט חדש</a></li>
+			<li sec:authorize="isAuthenticated()"><a class="menu_myMenus" th:href="@{~/} + 'user/' + ${#authentication.name} + '/menus'">התפריטים שלי</a></li>
+			<li sec:authorize="isAuthenticated()"><a class="menu_MenusLiked" th:href="@{~/} + 'user/' + ${#authentication.name} + '/liked/menus'">תפריטים שאהבתי</a></li>
+			<li sec:authorize="isAnonymous()" style="margin-top: 30px;"><a class="menu_login" th:href="@{/login}">כניסה לחשבון</a></li>
+			<li sec:authorize="isAnonymous()"><a class="menu_registeration" th:href="@{/registration}">משתמש חדש</a></li>
+			<li sec:authorize="isAuthenticated()"><a class="menu_logout" th:href="@{/logout}">יציאה</a></li>
+		</ul>
+	</div>
+	
+	
+	<div class="col-lg-4 ingridients_table" style="margin-top: 30px; position:relative;" th:fragment="ingridients_prices">
+		<h2 style="margin-bottom: 25px;">רשימת מחירים</h2>
+		<p style="font-size:17px; display:inline-block; margin-left: 20px;">
+		<input class="by_radio by_amount" type="radio" checked="checked" /> לפי כמות
+		 	<select class="form-control select_by_amount select_by">
+				<option value="0.5">0.5</option>
+				<option value="1" selected="selected">1</option>
+				<option value="1.5">1.5</option>
+				<option value="2">2</option>
+				<option value="2.5">2.5</option>
+				<option value="3">3</option>
+				<option value="3.5">3.5</option>
+				<option value="4">4</option>
+				<option value="4.5">4.5</option>
+				<option value="5">5</option>
+				<option value="5.5">5.5</option>
+				<option value="6">6</option>
+			</select>
+		</p>
+		<p style="font-size:17px; display:inline-block">
+		<input class="by_radio by_oz" type="radio" /> לפי משקל 
+		 	<select class="form-control select_by_oz select_by" style="visibility:hidden;">
+				<option value="0.05">50 גרם</option>
+				<option value="0.10">100 גרם</option>
+				<option value="0.15">150 גרם</option>
+				<option value="0.20">200 גרם</option>
+				<option value="0.25">250 גרם</option>
+				<option value="0.30">300 גרם</option>
+				<option value="0.35">350 גרם</option>
+				<option value="0.40">400 גרם</option>
+				<option value="0.45">450 גרם</option>
+				<option value="0.50">500 גרם</option>
+				<option value="1" selected="selected">1 קילו</option>
+			</select>
+		</p>
+		<div id="ingridients_prices" role="tablist" aria-multiselectable="true">
+			<div th:each="category : ${categories}" class="card">
+				<div class="card-header" role="tab" th:text="${category.name}" th:id="'ref_' + ${category.id}" th:href="'#ul_' + ${category.id}" data-toggle="collapse" data-parent="#ingridients_prices"></div>
+				<div th:id="'ul_' + ${category.id}" class="collapse" role="tabpanel" aria-labelledby="vegatables">
+					<ul class="mm_prices_ing_list">
+						<li th:each="ing : ${#lists.sort(category.ingridients)}" th:attr="ing_id=${ing.id}"><span class="mmpil_ing_by"> 1 </span><span class="mmpil_ing" th:text="' ' + ${ing.name}"></span><span class="mmpil_price" th:text="${#numbers.formatDecimal(ing.priceamount,1,2)}"></span><span class="mmpil_price2" th:text="${#numbers.formatDecimal(ing.priceoz,1,2)}"></span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="page_overlay" th:fragment="page_overlay"></div>
+	
+	<div class="scripts" th:fragment="scripts" th:remove="tag">
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<script src="/js/user_menu.js"></script>
+		<script>$('body').fadeIn(200);</script>
+		<script>function toast(msg, time) {
+			if (time == undefined ) {
+				time = 2500;
+			}
+			$('.toast').html(msg);
+			$('.toast').fadeIn(800, function() {
+				setTimeout(function() {$('.toast').fadeOut(1000)}, time);
+			})
+		}</script>
+	</div>
+	
+</body>
+</html>

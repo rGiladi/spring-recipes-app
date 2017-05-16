@@ -1,0 +1,10 @@
+.fa_tools {
+	font-size: 25px;
+	float: right;
+	color: #4D6684;
+	cursor: pointer;
+}
+
+.fa_tools:hover {
+	color:  #1499D3 ;
+}

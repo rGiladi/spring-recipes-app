@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he_IL" xmlns="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	<title>תפריטים</title>
+	<head th:replace="template :: styles"></head>
+	<link rel="stylesheet" href="/css/addmenu.css" />
+	<link rel="stylesheet" href="/css/ingridients_price.css" />
+	<link sec:authorize="isAnonymous()" rel="stylesheet" href="/css/login_register.css" />
+</head>
+<body>
+<div th:replace="template :: navigation"></div>
+<div th:replace="template :: user_menu"></div>
+<div th:replace="template :: page_overlay"></div>
+<div class="container-fluid">
+	<div class="content_wrapper">
+		<div sec:authorize="isAuthenticated()" class="recipes_wrapper">
+			<div class="menus_addmenu">
+				<form action="#" th:action="@{/addmenu}" th:object="${menu}" method="post" class="row add_menu_form">
+					<div class="col-lg-7 form_wrapper" style="margin-top: 30px;">
+						<h2 style="margin-bottom: 25px;">עריכת תפריט</h2>
+						<input th:value="${e_menu.title}" type="text" class="add_menu_title form-control" placeholder="כותרת" />
+						<p class="re_cha_t">נשארו עוד <span th:text="120 - ${#strings.length(e_menu.title)}">120</span> תווים</p>
+						<textarea th:text="${e_menu.freeText}" class="add_menu_freetext form-control" rows="7" placeholder="טקסט חופשי"></textarea>
+						<p class="re_cha">נשארו עוד <span th:text="550 - ${#strings.length(e_menu.freeText)}">550</span> תווים</p>
+					<div>
+						<div class="addmenu_details_wrapper mm1">
+							<div class="col-lg-9 products_col">
+								<h3>ארוחה 1</h3>
+								<h4 style="display:inline-block">מוצרים <i class="fa fa-plus-circle add_menu_product" aria-hidden="true"></i></h4>
+								<div class="addmenu_products_wrapper">
+									<div th:each="i : ${#numbers.sequence(0, #lists.size(e_menu.productsRecipe1) - 1)}" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" th:value="${e_menu.productsRecipe1[i]}" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" th:value="${e_menu.pricesRecipe1[i]}" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+									<div th:each="i : ${#numbers.sequence(#lists.size(e_menu.productsRecipe1), 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="addmenu_details_wrapper mm2">
+							<div class="col-lg-9 products_col">
+								<h3>ארוחה 2</h3>
+								<h4 style="display:inline-block">מוצרים <i class="fa fa-plus-circle add_menu_product" aria-hidden="true"></i></h4>
+								<div class="addmenu_products_wrapper">
+									<div th:each="i : ${#numbers.sequence(0, #lists.size(e_menu.productsRecipe2) - 1)}" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" th:value="${e_menu.productsRecipe2[i]}" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" th:value="${e_menu.pricesRecipe2[i]}" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+									<div th:each="i : ${#numbers.sequence(#lists.size(e_menu.productsRecipe2), 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="addmenu_details_wrapper mm3">
+							<div class="col-lg-9 products_col">
+								<h3>ארוחה 3</h3>
+								<h4 style="display:inline-block">מוצרים <i class="fa fa-plus-circle add_menu_product" aria-hidden="true"></i></h4>
+								<div class="addmenu_products_wrapper">
+									<div th:each="i : ${#numbers.sequence(0, #lists.size(e_menu.productsRecipe3) - 1)}" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" th:value="${e_menu.productsRecipe3[i]}" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" th:value="${e_menu.pricesRecipe3[i]}" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+									<div th:each="i : ${#numbers.sequence(#lists.size(e_menu.productsRecipe3), 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="addmenu_details_wrapper mm4">
+							<div class="col-lg-9 products_col" th:classappend="${#lists.size(e_menu.productsRecipe4)} == 0 ? 'menu_recipe_hide' : ''">
+								<h3>ארוחה 4</h3>
+								<h4 style="display:inline-block">מוצרים <i class="fa fa-plus-circle add_menu_product" aria-hidden="true"></i></h4>
+								<div class="addmenu_products_wrapper" th:unless="${#lists.size(e_menu.productsRecipe4)} == 0">
+									<div th:each="i : ${#numbers.sequence(0, #lists.size(e_menu.productsRecipe4) - 1)}" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" th:value="${e_menu.productsRecipe4[i]}" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" th:value="${e_menu.pricesRecipe4[i]}" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+									<div th:each="i : ${#numbers.sequence(#lists.size(e_menu.productsRecipe4), 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+								<div class="addmenu_products_wrapper" th:unless="${#lists.size(e_menu.productsRecipe4)} > 0">
+									<div th:each="i : ${#numbers.sequence(1, 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="addmenu_details_wrapper mm5">
+							<div class="col-lg-9 products_col" th:classappend="${#lists.size(e_menu.productsRecipe5)} == 0 ? 'menu_recipe_hide' : ''">
+								<h3>ארוחה 5</h3>
+								<h4 style="display:inline-block">מוצרים <i class="fa fa-plus-circle add_menu_product" aria-hidden="true"></i></h4>
+								<div class="addmenu_products_wrapper" th:unless="${#lists.size(e_menu.productsRecipe5)} == 0">
+									<div th:each="i : ${#numbers.sequence(0, #lists.size(e_menu.productsRecipe5) - 1)}" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" th:value="${e_menu.productsRecipe5[i]}" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" th:value="${e_menu.pricesRecipe5[i]}" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+									<div th:each="i : ${#numbers.sequence(#lists.size(e_menu.productsRecipe5), 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+								<div class="addmenu_products_wrapper" th:unless="${#lists.size(e_menu.productsRecipe5)} > 0">
+									<div th:each="i : ${#numbers.sequence(1, 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="addmenu_details_wrapper mm6">
+							<div class="col-lg-9 products_col" th:classappend="${#lists.size(e_menu.productsRecipe6)} == 0 ? 'menu_recipe_hide' : ''">
+								<h3>ארוחה 6</h3>
+								<h4 style="display:inline-block">מוצרים <i class="fa fa-plus-circle add_menu_product" aria-hidden="true"></i></h4>
+								<div class="addmenu_products_wrapper" th:unless="${#lists.size(e_menu.productsRecipe6)} == 0">
+									<div th:each="i : ${#numbers.sequence(0, #lists.size(e_menu.productsRecipe6) - 1)}" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" th:value="${e_menu.productsRecipe6[i]}" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" th:value="${e_menu.pricesRecipe6[i]}" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+									<div th:each="i : ${#numbers.sequence(#lists.size(e_menu.productsRecipe6), 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+								<div class="addmenu_products_wrapper" th:unless="${#lists.size(e_menu.productsRecipe6)} > 0">
+									<div th:each="i : ${#numbers.sequence(1, 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="addmenu_details_wrapper mm7">
+							<div class="col-lg-9 products_col" th:classappend="${#lists.size(e_menu.productsRecipe7)} == 0 ? 'menu_recipe_hide' : ''">
+								<h3>ארוחה 7</h3>
+								<h4 style="display:inline-block">מוצרים <i class="fa fa-plus-circle add_menu_product" aria-hidden="true"></i></h4>
+								<div class="addmenu_products_wrapper" th:unless="${#lists.size(e_menu.productsRecipe7)} == 0">
+									<div th:each="i : ${#numbers.sequence(0, #lists.size(e_menu.productsRecipe7) - 1)}" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" th:value="${e_menu.productsRecipe7[i]}" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" th:value="${e_menu.pricesRecipe7[i]}" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+									<div th:each="i : ${#numbers.sequence(#lists.size(e_menu.productsRecipe7), 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+								<div class="addmenu_products_wrapper" th:unless="${#lists.size(e_menu.productsRecipe7)} > 0">
+									<div th:each="i : ${#numbers.sequence(1, 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="addmenu_details_wrapper mm8">
+							<div class="col-lg-9 products_col" th:classappend="${#lists.size(e_menu.productsRecipe8)} == 0 ? 'menu_recipe_hide' : ''">
+								<h3>ארוחה 8</h3>
+								<h4 style="display:inline-block">מוצרים <i class="fa fa-plus-circle add_menu_product" aria-hidden="true"></i></h4>
+								<div class="addmenu_products_wrapper" th:unless="${#lists.size(e_menu.productsRecipe8)} == 0">
+									<div th:each="i : ${#numbers.sequence(0, #lists.size(e_menu.productsRecipe8) - 1)}" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" th:value="${e_menu.productsRecipe8[i]}" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" th:value="${e_menu.pricesRecipe8[i]}" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+									<div th:each="i : ${#numbers.sequence(#lists.size(e_menu.productsRecipe8), 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+								<div class="addmenu_products_wrapper" th:unless="${#lists.size(e_menu.productsRecipe8)} > 0">
+									<div th:each="i : ${#numbers.sequence(1, 8)}" th:classappend="${i} > 2 ? 'ing_hide' : ''" class="form-group products_ajax_wrapper" >
+										<input th:name="productsRecipe" type="text" class="product_ing form-control" />
+										<input th:name="pricesRecipe" type="number" min="1" class="product_price form-control" placeholder="&#8362;" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+						<h4 style="margin-bottom: 20px;"><span>&#8362;</span><span id="sum" th:text="${#numbers.formatDecimal(e_menu.price, 0, 0)}">0</span> </h4>
+						<input type="button" class="btn btn-secondary add_menu_meal" value="הוסף ארוחה"  />
+						<br />
+						<input type="button" class="btn btn-secondary add_menu_submit edit_menu_submit" th:attr="menu_id=${e_menu.id}" value="הוסף תפריט"  style="margin-top: 10px;"/>
+					</div>
+					
+					<div th:replace="template :: ingridients_prices"></div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div th:replace="template :: scripts"></div>
+<script src="/js/js_addmenu.js"></script>
+</body>
+</html>

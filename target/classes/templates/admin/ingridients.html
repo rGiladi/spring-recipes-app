@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he_IL" xmlns="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	<title>ארוחות</title>
+	<head th:replace="template :: styles"></head>
+	<link rel="stylesheet" href="/css/ingridients_price.css" />
+	<link rel="stylesheet" href="/css/admin/ingridients.css" />
+</head>
+<body>
+<div th:replace="template :: navigation"></div>
+<div th:replace="template :: user_menu"></div>
+<div th:replace="template :: page_overlay"></div>
+<div class="container-fluid">
+	<div class="ing_edit">
+		<form class="row" action="#" th:action="@{/admin/add_category}" method="post">
+			<div class="col-lg-7" style="margin-top: 30px;">
+				<div class="new_ing">
+					<h2 style="margin-bottom: 25px;">מצרך חדש</h2>
+					<input type="text" name="ing_name" class="form-control ing_name" placeholder="שם" />
+					<select class="form-control ing_category">
+						<option disabled="disabled" selected="selected">קטגוריה</option>
+						<option th:each="category : ${categories}" th:text="${category.name}" th:id="${category.id}"></option>
+					</select>
+					<input type="number" name="ing_price_oz" class="form-control ing_price_oz" placeholder="מחיר לפי קילו" />
+					<input type="number" name="ing_price_amount" class="form-control ing_price_amount" placeholder="מחיר לפי פריט אחד" />
+					<input type="button" class="btn btn-secondary add_ingridient" value="הוסף מצרך" />
+				</div>
+				<div class="new_category">
+					<h2 style="margin-bottom: 25px;">קטגוריה חדשה</h2>
+					<input type="text" name="category_name" class="form-control category_name" placeholder="שם" />
+					<input type="button" class="btn btn-secondary add_category" value="הוסף קטגוריה" />
+				</div>
+			</div>
+			<i class="fa fa-trash" aria-hidden="true"></i>
+			<div th:replace="template :: ingridients_prices"></div>
+		</form>
+	</div>
+</div>
+<div th:replace="template :: scripts"></div>
+<script src="/js/admin/ingridients.js"></script>
+</body>
+</html>

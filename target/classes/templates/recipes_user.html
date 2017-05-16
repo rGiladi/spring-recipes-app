@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he_IL" xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>תפריטים</title>
+	<head th:replace="template :: styles"></head>
+	<link rel="stylesheet" href="/css/home.css" />
+	<link rel="stylesheet" href="/css/recipes_user.css" />
+	<link rel="stylesheet" href="/css/mq.css" />
+</head>
+<body>
+
+<div th:replace="template :: navigation"></div>
+<div th:replace="template :: user_menu"></div>
+<div th:replace="template :: page_overlay"></div>
+
+<div class="container-fluid">
+<div class="row content_wrapper">
+	<div class="col-lg-8 recipes_col">
+	<div class="recipes_menus">
+		<div class="mm_tabs">
+			<ul class="nav nav-tabs">
+			  <li class="nav-item"><a class="nav-link" th:href="@{/}">מתכונים של אנשים</a></li>
+			  <li class="nav-item"><a class="nav-link active">המתכונים שלי</a></li>
+			</ul>
+			<div class="tab-content">
+				<div id="menu_user_menus" role="tabpanel">
+					<div th:each="recipe : ${user_recipes}" class="recipe_row row" th:id="${recipe.id}" th:unless="${user_recipes == null}">
+						<div class="col-lg-4 recipe_img_wrapper">
+							<img class="recipe_img img-fluid" width="200" height="150" th:src="@{'/image/' + ${recipe.image} + '/' }" />
+						</div>
+						<div class="col-lg-8 recipe_content_wrapper">
+							<div class="recipe_content">
+								<div class="mm_title"><i class="fa fa-pencil" aria-hidden="true"></i><span class="orig" th:text="${recipe.title}"></span><span class="substr"></span></div>
+								<div class="mm_price"><i class="fa fa-ils" aria-hidden="true"></i><span th:text="${recipe.price} % 1 != 0 ? ${recipe.price} : ${#numbers.formatDecimal(recipe.price, 0, 0)} + ' שקלים'"></span></div>
+								<div class="recipe_time"><i class="fa fa-clock-o" aria-hidden="true"></i><span th:unless="${recipe.time} == null" th:text="${recipe.time} % 1 != 0 ? ${recipe.time} : ${#numbers.formatDecimal(recipe.time, 0, 0)} + ' דקות הכנה  '"></span></div>
+								<div class="recipe_amount"><i class="fa fa-shopping-basket" aria-hidden="true"></i><span th:text="${recipe.amount} % 1 != 0 ? ${recipe.amount} + ' מנות  ' : ${#numbers.formatDecimal(recipe.amount, 0, 0)} + ' מנות  '"></span></div>
+								<div class="recipe_likes"><i class="fa fa-heart recipe_heart" aria-hidden="true"></i><span th:text="${#sets.size(recipe.usersLiked)}"></span></div>	
+							</div>
+							<div class="recipe_uploader">
+								<p class="recipe_uploaded" th:text=" 'הועלה ב ' + ${recipe.dateField}">הועלה ב 15/2/96</p>
+								<p class="recipe_by"  th:text="${recipe.user} ? ${recipe.user.getUsername()} : 'אנונימי' "></p>
+							</div>
+							<div class="recipe_toshow" style="display:none;">
+								<div>
+									<p th:text="${recipe.freetext}" class="toshow_freetext toshow_freetext_real mm_freetext"></p>
+								</div>
+								<ul class="toshow_ingridients_list">
+									<li th:each="ing, iter : ${recipe.products}"><span th:text="${ing} + ' - ' + ${recipe.prices[iter.index]}" class="showrecipe_ils"></span><i class="fa fa-ils fa_ils_showrecipe" aria-hidden="true"></i></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Show Recipe -->
+		<div class="show_mm_wrapper" style="display:none">
+			<div class="showmm_close_wrapper">
+				<input name="_csrf" type="hidden" th:value="${_csrf.token}" />
+
+				<i class="fa fa-trash fa_tools" title="מחק מתכון" data-toggle="modal" data-target="#promptDelete" aria-hidden="true"></i>
+				<a id="edit_href" title="ערוך מתכון" th:href="@{~/} + 'user/' + ${#authentication.name} + '/edit_recipe/'"><i class="fa fa-pencil fa_tools edit_p" aria-hidden="true"></i></a>
+				<i class="fa fa-times-circle showmm_close" aria-hidden="true"></i>
+			</div>
+			<div class="show_recipe">
+				<h2 id="show_mm_title"></h2>
+				<p class="showrecipe_recipe_price"><i class="fa fa-ils" aria-hidden="true"></i><span id="show_mm_price"></span></p>
+				<p class="showrecipe_recipe_time"><i class="fa fa-clock-o" aria-hidden="true"></i><span id="showrecipe_recipe_time"></span></p>
+				<div id="show_mm_freetext"></div>
+				<div id="showrecipe_ingridients_list">
+					<p class="showrecipe_ingridients_title">מוצרים</p>
+					<div id="ing_list"></div>
+				</div>
+				<img class="img-fluid" id="showrecipe_img" src="" /> 
+			</div>
+		</div>
+		
+		<!-- Modals  -->
+		<div class="modal fade" id="promptDelete" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+		  				אי אפשר לשחזר ארוחה שנמחקה, להמשיך?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+						<button type="button" class="btn btn-primary btn_delete_menu">מחק</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-lg-3 adds_col">
+		<img src="/photos/vbg2.jpg" style="width:120%; margin-top: 41px;" />
+		<img src="/photos/vbg.jpg" style="width:120%; margin-top: 20px; margin-bottom: 30px;" />
+	</div>
+</div>
+</div>
+<div th:replace="template :: scripts"></div>
+<script src="/js/show_menu_recipe.js"></script>
+<script src="/js/show_recipe_user.js"></script>
+<script th:inline="javascript">
+/*<![CDATA[*/
+	if (screen && screen.width > 480) {
+	  document.write('<script type="text/javascript" src="/js/commons.js"><\/script>');
+	}
+/*]]>*/
+</script>
+</body>
+</html>

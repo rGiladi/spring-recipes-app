@@ -1,0 +1,37 @@
+.fa-users {
+	font-size: 22px;
+	float: right;
+	position: relative;
+	top: 1px;
+	color: #4D6684;
+	cursor: pointer;	
+}
+
+.fa-trash {
+	font-size: 25px;
+	float: right;
+	color: #4D6684;
+	cursor: pointer;
+}
+
+.fa_tools {
+	font-size: 25px;
+	float: right;
+	color: #4D6684;
+	cursor: pointer;
+}
+
+.fa-users:hover, .fa-trash:hover, .fa_tools:hover {
+	color:  #1499D3 ;
+}
+
+
+
+.mm_published {
+	color: #1499D3;
+}
+
+.mm_published:hover {
+	color: #4D6684;
+}
+

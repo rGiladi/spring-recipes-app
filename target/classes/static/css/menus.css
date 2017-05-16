@@ -1,0 +1,108 @@
+
+/* Page */
+
+.form-control {
+	margin-top: 10px;
+}
+
+.fa {
+	margin-left: 10px;
+}
+
+/* Navigation */
+
+.menu_menus {
+	color: #00B796 !important;
+	padding: .5em .5em;
+}
+
+/* Menus */
+
+.menus_col {
+	margin-right: 25px;
+}
+
+.menu_community_menus_list {
+	padding: 0;
+}
+
+.menu_li {
+	position: relative;
+	background-color: #fff;
+	padding: 10px;
+	list-style: none;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	cursor: pointer;
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+.menu_li:hover {
+	background-color: #D4EDF4;	
+}
+
+.menu_likes {
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
+
+.mm_price, .menu_uploader, .mm_title {
+	margin-bottom: 5px;
+}
+
+
+.uploader_wrapper {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	font-size: 0.8em;
+	opacity: 0.7;
+}
+
+.uploader_wrapper p {
+	margin-bottom: 0;
+}
+
+/* Show Menu */
+
+.show_menu {
+	padding: 20px;
+	background-color: #ffffec;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#showmenu_menu_name {
+	margin-bottom: 20px;
+	text-decoration: underline;
+}
+
+.showmenu_menu_price {
+	font-size: 20px;
+}
+
+#showmenu_freetext {
+	margin-top: 20px;
+	font-size: 18px;
+}
+
+#showmenu_recipes {
+	margin-top: 20px;
+}
+
+.menu_recipes_title {
+	font-size: 26px;
+	text-decoration: underline;
+}
+
+.showmenu_ils {
+	font-size: 20px;
+	font-family: 'Alef', sans-sarif;
+}
+
+.fa_ils_showmenu {
+	font-size: 14px;
+}
+
+.showmenu_fix {
+	margin-right: 22px;
+}

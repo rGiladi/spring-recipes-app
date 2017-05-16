@@ -1,0 +1,144 @@
+.menu_recipes {
+	color: #00B796 !important;
+}
+
+/* Form-Add-Recipe Styles */ 
+
+.recipes_wrapper {
+	margin: 20px 80px;
+}
+
+.form_wrapper {
+	margin: 30px 15px 30px 0;
+}
+
+.addrecipe_products_wrapper {
+	margin-top: 20px;
+}
+
+.add_recipe_freetext {
+	display: block;
+	width: 100%;
+	margin-top: 25px !important;
+	margin-bottom: 10px;
+	padding: 3px;
+}
+
+.re_cha, .re_cha_t {
+	float: left;
+	opacity: 0.5;
+}
+
+.re_cha_t {
+	margin-top: 10px;
+}
+
+.add_recipe_preparetime, .add_recipe_amount {
+	margin-bottom: 25px;
+	margin-top: 25px !important;
+	width: 30%;
+}
+
+.add_recipe_product {
+	cursor: pointer;
+	color: #29ABA4;
+}
+
+.add_recipe_product:hover {
+	color: #4298B5;
+}
+
+.product_ing {
+	width: 78%;
+	display: inline-block;
+}
+
+.product_price {
+	width: 20%;
+	display: inline-block;
+}
+
+.products_col {
+	padding-right: 0;
+	padding-bottom: 10px;
+}
+
+.box_upload_file {
+	width: 200px;
+	height: 150px;
+	border: 1px solid rgba(0,0,0,.15);
+	margin-top: 20px;
+	cursor:pointer;
+}
+
+.btn_upload_file {
+	cursor: pointer;
+	width: 200px;
+	height: 150px;
+}
+
+.upload_file_text {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center; 
+}
+
+#prev_img {
+	display: none;
+}
+
+.add_recipe_submit {
+	margin-top: 20px;
+	display: block;
+}
+
+.ing_hide {
+	display: none;
+}
+
+.form-control {
+	margin-top: 10px;
+}
+
+.menu_addrecipe {
+	color: #D94E67 !important;
+}
+
+/* Media Queries */
+
+@media screen and ( max-width: 1030px ) {
+	.add_recipe_preparetime, .add_recipe_amount {
+		width: 45%;
+	}
+}
+
+@media screen and ( max-width: 457px ) {
+	.add_recipe_preparetime {
+		margin-top: 50px !important;
+	}
+	
+	.add_recipe_preparetime, .add_recipe_amount {
+		width: 60%;
+	}
+	
+	.adds {
+		display: block !important;
+	}
+	
+	.container-fluid {
+		margin-top: 55px;
+	}
+	
+	.products_col {
+		padding-left: 0;
+	}
+	
+	.product_ing {
+		width: 72%;
+	}
+	
+	.product_price {
+		width: 26%;
+	}
+}
