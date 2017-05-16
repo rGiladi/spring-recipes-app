@@ -19040,3 +19040,9 @@ java.sql.SQLException: Driver:org.postgresql.Driver@50fb9ef6 returned null for U
 2017-05-17 00:41:57.447  INFO 2712 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
 2017-05-17 00:41:57.451  INFO 2712 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
 2017-05-17 00:41:57.780  INFO 2712 --- [restartedMain] com.roy.RecipesApplication               : Started RecipesApplication in 14.512 seconds (JVM running for 244.981)
+2017-05-17 00:58:53.550  INFO 2712 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2017-05-17 00:58:53.550  INFO 2712 --- [RMI TCP Connection(2)-127.0.0.1] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6904657f: startup date [Wed May 17 00:41:43 IDT 2017]; root of context hierarchy
+2017-05-17 00:58:53.552  INFO 2712 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-05-17 00:58:53.555  INFO 2712 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2017-05-17 00:58:53.555  INFO 2712 --- [RMI TCP Connection(2)-127.0.0.1] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000227: Running hbm2ddl schema export
+2017-05-17 00:58:56.668  INFO 2712 --- [RMI TCP Connection(2)-127.0.0.1] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000230: Schema export complete
