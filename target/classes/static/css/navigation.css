@@ -277,8 +277,11 @@ body {
 
 .user_liked {
 	color: #ED1C24;
+	-moz-transition: font-size 0.3;
+	-o-transition: font-size: 0.3;
+	-ms-transition: font-size 0.3;
 	-webkit-transition: font-size 0.3;
-	transition: font-size -.3s;
+	transition: font-size 0.3s;
 }
 
 .user_liked:hover {
@@ -294,8 +297,11 @@ body {
 	margin-left: 5px !important;
 	color: black;
 	cursor: pointer;
-	-webkit-transition: 0.3 font-size;
-	transition: 0.3 font-size;
+	-moz-transition: font-size 0.3;
+	-o-transition: font-size: 0.3;
+	-ms-transition: font-size 0.3;
+	-webkit-transition: font-size 0.3;
+	transition: font-size 0.3s;
 }
 
 .showmm_report:hover {
@@ -304,8 +310,11 @@ body {
 
 .user_reported {
 	color: #8C4646;
-	-webkit-transition: 0.3 font-size;
-	transition: 0.3 font-size;
+	-moz-transition: font-size 0.3;
+	-o-transition: font-size: 0.3;
+	-ms-transition: font-size 0.3;
+	-webkit-transition: font-size 0.3;
+	transition: font-size 0.3s;
 }
 
 .user_reported:hover {
@@ -534,6 +543,7 @@ body {
 }  
 
 /* IE */
+
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 	.btn_search_recipe {
 		width: 35px;

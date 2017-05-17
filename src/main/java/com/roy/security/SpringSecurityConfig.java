@@ -25,5 +25,3 @@ public class SpringSecurityConfig extends AbstractSecurityWebApplicationInitiali
     
     
 }
-
-
