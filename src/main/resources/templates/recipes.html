@@ -29,7 +29,7 @@
 						<div id="recipes_community_recipes" class="tab-pane active"  role="tabpanel">
 							<div th:each="recipe : ${recipes}" class="recipe_row row" th:id="${recipe.id}" th:unless="${recipes == null}">
 								<div class="col-lg-4 recipe_img_wrapper">
-									<img class="recipe_img img-fluid" width="200" height="160" th:src="@{'/image/' + ${recipe.image} + '/' }" />
+									<img class="recipe_img img-fluid" width="200" height="160" th:attr="data-src=@{'/image/' + ${recipe.image} + '/' }" />
 								</div>
 								<div class="col-lg-8 recipe_content_wrapper">
 									<div class="recipe_content">
@@ -93,10 +93,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-3 adds_col">
-			<img src="/photos/vbg2.jpg" style="width:120%; margin-top: 41px;" />
-			<img src="/photos/vbg.jpg" style="width:120%; margin-top: 20px; margin-bottom: 30px;" />
-		</div>
+	<div th:replace="template :: adds_col"></div>
 	</div>
 </div>
 	<!-- Modals  -->

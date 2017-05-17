@@ -147,6 +147,13 @@
 	
 	<div class="page_overlay" th:fragment="page_overlay"></div>
 	
+	<div class="adds_col" th:fragment="adds_col" th:remove="tag">
+		<div class="col-lg-3 adds_col">
+			<img data-src="/photos/vbg2.jpg" style="width:120%; margin-top: 41px;" />
+			<img data-src="/photos/vbg.jpg" style="width:120%; margin-top: 20px; margin-bottom: 30px;" />
+		</div>
+	</div>
+	
 	<div class="scripts" th:fragment="scripts" th:remove="tag">
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -162,6 +169,12 @@
 				setTimeout(function() {$('.toast').fadeOut(1000)}, time);
 			})
 		}</script>
+		<script src="/js/jquery.unveil.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('img').unveil(150);
+			});
+		</script>
 	</div>
 	
 </body>
