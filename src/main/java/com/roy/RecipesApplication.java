@@ -103,39 +103,4 @@ private void createUserWithRoles() {
 			dir2.mkdirs();
 		}
 	}
-	
-	@Controller
-	public class errorController implements ErrorController {
-		private static final String PATH = "/error";
-		
-		@RequestMapping(value = PATH)
-		public String error(Model model) {
-			model.addAttribute("search", new Search());
-			try {
-				ClassLoader classLoader = getClass().getClassLoader();
-				File file = new File(classLoader.getResource("static/photos/error_img_slider").getFile());
-				
-				final String img_folder = "photos/error_img_slider/";
-				
-				List<String> images = new ArrayList<String>();
-				
-				for (File img : file.listFiles() ) {
-					images.add(img_folder + img.getName());
-				}
-				
-				if (images.size() != 0) {
-					model.addAttribute("images", images);
-				}
-				
-			}catch(Exception ex){}
-			
-			return "/error/404";
-		}
-		
-		@Override
-		public String getErrorPath() {
-			return PATH;
-		}
-		
-	}
 }
