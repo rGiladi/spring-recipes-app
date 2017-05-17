@@ -58,14 +58,15 @@ public class SecurityController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult
     		,@RequestParam("g-recaptcha-response") String recaptcha) {
-    
+    	
+    	userForm.setUsername(userForm.getUsername().trim());
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "security_register";
         }
     	
-    	if ( verifyRecaptcha(recaptcha) ) { 
+    	if ( verifyRecaptcha(recaptcha) ) {
 	        userService.save(userForm);
 	        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 	        return "redirect:/";
