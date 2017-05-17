@@ -16,10 +16,10 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long>{
 	
 	@Query(value = "SELECT * FROM recipes WHERE (title LIKE %" + ":freetext" + "% OR :freetext = '')"
 			+ " AND (price <= :price) AND (recipetime = :recipetime OR :recipetime = '' OR :recipetime is null)"
-			+ " AND (recipetype = :recipetype OR :recipetype = '' OR :recipetype is null) AND (`time` <= :time)"
-			+ " AND (vegetarian = :vegetarian OR :vegetarian = 0) AND (vegan = :vegan OR :vegan = 0)"
-			+ " AND (kosher = :kosher OR :kosher = 0) AND (spicy = :spicy OR :spicy = 0)"
-			+ " AND (gluten = :gluten OR :gluten = 0) ", nativeQuery=true)
+			+ " AND (recipetype = :recipetype OR :recipetype = '' OR :recipetype is null) AND (\"time\" <= :time)"
+			+ " AND (vegetarian = :vegetarian OR :vegetarian = false) AND (vegan = :vegan OR :vegan = false)"
+			+ " AND (kosher = :kosher OR :kosher = false) AND (spicy = :spicy OR :spicy = false)"
+			+ " AND (gluten = :gluten OR :gluten = false) ", nativeQuery=true)
 	public List<Recipe> Search(@Param("price") int price, @Param("recipetime") String recipetime
 			,@Param("recipetype") String recipetype, @Param("freetext") String freetext, @Param("time") int time,
 			@Param("vegetarian") boolean vegetarian, @Param("vegan") boolean vegan,

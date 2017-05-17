@@ -1,5 +1,7 @@
 package com.roy.security.Validator;
 
+import java.util.regex.Pattern;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -26,6 +28,10 @@ public class UserValidator implements Validator {
 		
 		ValidationUtils.rejectIfEmpty(errors, "username", "NotEmpty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmptyPassword");
+		
+		if (!user.getUsername().matches("[A-Za-z0-9]+ | \\p{InHebrew} ")) {
+			errors.rejectValue("username", "Char.userForm.username");
+		}
 		
 		if ( user.getUsername().length() < 6  || user.getUsername().length() > 24) {
 			errors.rejectValue("username", "Size.userForm.username");
