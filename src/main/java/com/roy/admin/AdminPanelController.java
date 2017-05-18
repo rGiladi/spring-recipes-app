@@ -34,6 +34,6 @@ public class AdminPanelController {
 		model.addAttribute("search", new Search());
 		model.addAttribute("recipes_size", recipesService.getAllReportedRecipes().size());
 		model.addAttribute("menus_size", menusService.getAllReportedMenus().size());
-		return "/admin/panel";
+		return "admin/panel";
 	}
 }

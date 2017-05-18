@@ -35,7 +35,7 @@ public class AdminIngridientsController {
 	public String editIngridients(Model model) {
 		model.addAttribute("categories", ingCatService.getAllIngridients() );
 		model.addAttribute("search", new Search());
-		return "/admin/ingridients";
+		return "admin/ingridients";
 	}
 	
 	@RequestMapping(value="/admin/add_category", method=RequestMethod.POST)

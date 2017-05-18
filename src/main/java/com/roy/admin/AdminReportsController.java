@@ -32,7 +32,7 @@ public class AdminReportsController {
 		model.addAttribute("search", new Search());
 		model.addAttribute("recipes", recipesService.getAllReportedRecipes());
 		model.addAttribute("is_recipes", true);
-		return "/admin/reports";
+		return "admin/reports";
 	}
 	
 	@RequestMapping(value="/admin/reports/delete", method=RequestMethod.POST)
@@ -61,7 +61,7 @@ public class AdminReportsController {
 		model.addAttribute("search", new Search());
 		model.addAttribute("menus", menusService.getAllReportedMenus());
 		model.addAttribute("is_menus", true);
-		return "/admin/reports";
+		return "admin/reports";
 	}
 
 	
