@@ -37,7 +37,7 @@ public class ErrorHandlingController implements ErrorController {
 			
 		}catch(Exception ex){}
 		
-		return "/error/404.html";
+		return "404";
 	}
 	
 	@Override
