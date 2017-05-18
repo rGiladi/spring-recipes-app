@@ -148,7 +148,7 @@
 		 <div id="jssor_1" class="jssor_style" style="position:relative;margin:0 auto;top:0px;left:0px;width:500px;height:300px;overflow:hidden;visibility:hidden;">
 		     <div class="jssor_style" data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:500px;height:300px;overflow:hidden;">
 		         <div th:each="img : ${images}" th:unless="${img} == 'photos/error_img_slider/a02.png'">
-		             <img data-u="image" th:src="@{~/} + ${img}" />
+		             <img data-u="image" th:attr="data-src=@{~/} + ${img}" />
 		         </div>
 		     </div>
 		     <!-- Arrow Navigator -->
