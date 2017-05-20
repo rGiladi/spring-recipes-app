@@ -5,45 +5,26 @@ import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import javax.servlet.ServletContext;
 
 import org.apache.commons.io.FileUtils;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.ServletContextAware;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.roy.RecipesList;
-import com.roy.models.Ingridient;
 import com.roy.models.Recipe;
-import com.roy.models.Role;
 import com.roy.models.Search;
 import com.roy.models.User;
 import com.roy.repositories.RecipeRepository;
-import com.roy.repositories.RoleRepository;
 import com.roy.security.Services.UserService;
 import com.roy.services.IngridientsCategoryService;
 import com.roy.services.RecipeService;
@@ -54,15 +35,13 @@ public class RecipesController{
 	
 	private RecipeService recipesService;
 	private UserService userService;
-	private RoleRepository roleRepo;
 	private RecipeRepository recipesRepo;
 	private IngridientsCategoryService ingCatService;
 	
 	@Autowired 
-	public RecipesController(RecipeService recipes, UserService userService, RoleRepository roleRepo, RecipeRepository recipesRepo, IngridientsCategoryService ingCatService) {
+	public RecipesController(RecipeService recipes, UserService userService, RecipeRepository recipesRepo, IngridientsCategoryService ingCatService) {
 		this.recipesService = recipes;
 		this.userService = userService;
-		this.roleRepo = roleRepo;
 		this.recipesRepo = recipesRepo;
 		this.ingCatService = ingCatService;
 	}
