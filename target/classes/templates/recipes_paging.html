@@ -22,7 +22,7 @@
 			<div class="recipes_wrapper">
 			<!-- Main Page -->
 				<div class="mm_tabs">
-					<h3 style="margin-bottom: 10px;" th:text="'עמוד  ' + ${page}"></h3>
+					<h2 style="margin-bottom: 10px;" th:text="'עמוד  ' + ${page}"></h2>
 					<div class="tab-content">
 						<div id="recipes_community_recipes" class="tab-pane active"  role="tabpanel">
 							<div th:each="recipe : ${recipes}" class="recipe_row row" th:id="${recipe.id}" th:unless="${recipes == null}">

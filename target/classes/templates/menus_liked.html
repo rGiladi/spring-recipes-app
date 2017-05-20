@@ -17,10 +17,10 @@
 	<div class="col-lg-8" style="margin:auto;">
 	<div class="recipes_menus">
 		<div class="mm_tabs">
-		<h3 style="margin-bottom: 20px;">תפריטים שאהבת</h3>
+		<h1 style="margin-bottom: 20px;">תפריטים שאהבת</h1>
 			<div class="tab-content">
 				<div id="menu_community_menus" class="tab-pane active" role="tabpanel">
-					<ul class="menu_community_menus_list">
+					<ul class="menu_community_menus_list" th:if="${#lists.size(menus)} > 0">
 						<li th:each="menu : ${menus}" class="menu_li" th:id="${menu.id}">
 							<div class="menu_details">
 								<p class="mm_title"><i class="fa fa-pencil" aria-hidden="true"></i><span th:text="${menu.title}"></span></p>
@@ -90,6 +90,9 @@
 							</div>
 						</li>
 					</ul>
+					<div class="no_likes" th:if="${#lists.size(menus)} == 0">
+						<h4>עוד לא אהבת שום תפריט...</h4>
+					</div>
 				</div>
 			</div>
 		</div>

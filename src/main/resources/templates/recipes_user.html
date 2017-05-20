@@ -51,6 +51,9 @@
 							</div>
 						</div>
 					</div>
+					<div th:if="${#lists.size(user_recipes)} == 0">
+						<h3>עוד לא פרסמת שום מתכון, התחל <a th:href="@{/addrecipe}" style="color: #2B9464;" >לפרסם</a></h3>
+					</div>
 				</div>
 			</div>
 		</div>

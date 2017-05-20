@@ -28,7 +28,7 @@
 			</ul>
 			<div class="tab-content">
 				<div id="menu_user_menus" role="tabpanel">
-					<ul style="padding:0;">
+					<ul style="padding:0;" th:if="${#lists.size(user_menus)} > 0">
 						<li th:each="menu : ${user_menus}" class="menu_li" th:id="${menu.id}">
 							<div class="menu_details">
 								<p class="mm_title"><i class="fa fa-pencil" aria-hidden="true"></i><span th:text="${menu.title}"></span></p>
@@ -98,6 +98,9 @@
 							</div>
 						</li>
 					</ul>
+					<div th:if="${#lists.size(user_menus)} == 0">
+						<h3>עוד לא פרסמת שום תפריט, התחל <a th:href="@{/addmenu}" style="color: #2B9464;" >לפרסם</a></h3>
+					</div>
 				</div>
 			</div>
 		</div>

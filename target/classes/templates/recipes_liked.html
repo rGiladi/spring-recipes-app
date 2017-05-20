@@ -20,7 +20,7 @@
 			<div class="recipes_wrapper">
 			<!-- Main Page -->
 				<div class="mm_tabs">
-					<h3 style="margin-bottom: 20px;">מתכונים שאהבת</h3>
+					<h1 style="margin-bottom: 20px;">מתכונים שאהבת</h1>
 					<div class="tab-content">
 						<div id="recipes_community_recipes" class="tab-pane active"  role="tabpanel">
 							<div th:each="recipe : ${recipes}" class="recipe_row row" th:id="${recipe.id}" th:unless="${recipes == null}">
@@ -52,6 +52,9 @@
 									</div>
 								</div>
 							</div>
+						<div class="no_likes" th:if="${#lists.size(recipes)} == 0">
+							<h4>עוד לא אהבת שום מתכון...</h4>
+						</div>
 						</div>
 						<div id="recipes_user_recipes" class="tab-pane" role="tabpanel">
 							<div sec:authorize="isAnonymous()">
@@ -93,8 +96,6 @@
 	</div>
 </div>
 <div th:replace="template :: scripts"></div>
-<script src="/js/spin.min.js"></script>
-<script src="/js/javascript_main.js"></script>
 <script src="/js/commons.js"></script>
 <script src="/js/show_menu_recipe.js"></script>
 </body>

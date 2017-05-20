@@ -1,4 +1,3 @@
-
 $('.add_menu_product').on('click', function() {
 	var products = $(this).closest('.products_col').find('.addmenu_products_wrapper').find('.ing_hide');
 	if ( products.length != 0) {
@@ -185,7 +184,6 @@ function endValidation() {
 	// Title 
 	
 	var mm_title = $('.add_menu_title');
-	alert(mm_title)
 	if ( mm_title.val().trim().length == 0 ) {
 		mm_title.addClass('alert-danger');
 		toast('חובה למלא כותרת')
