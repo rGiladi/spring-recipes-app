@@ -11,7 +11,6 @@ import org.springframework.data.repository.query.Param;
 
 import com.roy.models.Ingridient;
 import com.roy.models.IngridientCategory;
-import com.roy.models.Recipe;
 
 public interface IngridientsRepository extends CrudRepository<Ingridient, Long>{
 	public List<Ingridient> findByIngridientCategory(IngridientCategory ingridientCategory);

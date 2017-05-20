@@ -1,29 +1,17 @@
 package com.roy.models;
 
-import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.PreRemove;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import org.hibernate.SessionFactory;
 import org.hibernate.validator.constraints.Email;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-
-import com.roy.repositories.MenusRepository;
-import com.roy.repositories.RecipeRepository;
-import com.roy.repositories.UserRepository;
 
 @Entity
 @Table(name="users")

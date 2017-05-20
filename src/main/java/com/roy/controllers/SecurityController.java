@@ -1,14 +1,10 @@
 package com.roy.controllers;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.security.Principal;
-
-import javax.net.ssl.HttpsURLConnection;
 import javax.validation.Valid;
 
 import org.json.JSONObject;
@@ -23,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.roy.models.Search;
 import com.roy.models.User;
 import com.roy.security.Services.SecurityService;
 import com.roy.security.Services.UserService;

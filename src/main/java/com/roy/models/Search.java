@@ -1,8 +1,5 @@
 package com.roy.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 public class Search {
 	private int price;
 	private String recipetime;

@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.roy.models.Recipe;
 import com.roy.models.Menu;
 import com.roy.repositories.MenusRepository;
 

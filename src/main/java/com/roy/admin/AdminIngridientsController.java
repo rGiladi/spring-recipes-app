@@ -17,7 +17,6 @@ import com.roy.models.Search;
 import com.roy.repositories.IngridientsCategoryRepository;
 import com.roy.repositories.IngridientsRepository;
 import com.roy.services.IngridientsCategoryService;
-import com.roy.services.IngridientsService;
 
 @Controller
 public class AdminIngridientsController {

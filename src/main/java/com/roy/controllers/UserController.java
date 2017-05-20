@@ -3,12 +3,10 @@ package com.roy.controllers;
 import java.io.File;
 import java.security.Principal;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.roy.models.Recipe;
-import com.roy.models.Role;
 import com.roy.models.Menu;
 import com.roy.models.User;
-import com.roy.repositories.IngridientsCategoryRepository;
 import com.roy.repositories.RoleRepository;
 import com.roy.security.Services.UserService;
 import com.roy.services.RecipeService;
