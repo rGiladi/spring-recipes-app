@@ -25,7 +25,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long>{
 			@Param("vegetarian") boolean vegetarian, @Param("vegan") boolean vegan,
 			@Param("kosher") boolean kosher, @Param("spicy") boolean spicy, @Param("gluten") boolean gluten);
 	
-	@Query(value = "SELECT * FROM recipes ORDER BY date_field LIMIT 20 OFFSET :starting", nativeQuery=true)
+	@Query(value = "SELECT * FROM recipes ORDER BY date_field DESC LIMIT 20 OFFSET :starting", nativeQuery=true)
 	public List<Recipe> AllRecipesPaging(@Param("starting") int se);
 	
 }
