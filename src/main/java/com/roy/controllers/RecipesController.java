@@ -5,6 +5,7 @@ import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -188,7 +189,9 @@ public class RecipesController{
 			if (username.equals(principal.getName())) {
 				User user = userService.findByUsername(username);
 				if ( user != null) {
-					model.addAttribute("user_recipes", recipesService.getAllUserRecipes(user.getId()));
+					List<Recipe> user_recipes = recipesService.getAllUserRecipes(user.getId());
+					Collections.reverse(user_recipes);
+					model.addAttribute("user_recipes", user_recipes );
 					return "recipes_user";
 				} 
 				else {
