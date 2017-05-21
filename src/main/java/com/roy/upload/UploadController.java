@@ -59,31 +59,32 @@ public class UploadController {
 					File serverFile = new File("tmp_images/" + UUID.randomUUID().toString().substring(0,6).replaceAll("-",  "") + "_" + System.currentTimeMillis());
 					File tempFile = new File("tmp_images/" + UUID.randomUUID().toString().substring(0,6).replaceAll("-",  "") + "_" + System.currentTimeMillis());
 					
+					System.out.println("Got Here #1");
 					byte[] bytes = file.getBytes();
 					BufferedOutputStream stream = new BufferedOutputStream(
 							new FileOutputStream(tempFile));
 					stream.write(bytes);
 					stream.close();
-					
-					
-					BufferedImage image = ImageIO.read((File) tempFile);
+					System.out.println("Got Here #2");
+					BufferedImage image = ImageIO.read(tempFile);
 					OutputStream os = new FileOutputStream(serverFile);
-					
+					System.out.println("Got Here #3");
 					Iterator<ImageWriter>writers =  ImageIO.getImageWritersByFormatName("jpg");
 					ImageWriter writer = (ImageWriter) writers.next();
-					
+					System.out.println("Got Here #4");
 				    ImageOutputStream ios = ImageIO.createImageOutputStream(os);
 				    writer.setOutput(ios);
-					
+				    System.out.println("Got Here #5");
 				    ImageWriteParam param = writer.getDefaultWriteParam();
 				    
 				    param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
 				    param.setCompressionQuality(0.7f);
 				    writer.write(null, new IIOImage(image, null, null), param);
-				      
+				    System.out.println("Got Here #6");
 				    os.close();
 				    ios.close();
 				    writer.dispose();
+				    System.out.println("Got Here #7");
 					
 					return serverFile.getName();
 				} catch (Exception e) {
