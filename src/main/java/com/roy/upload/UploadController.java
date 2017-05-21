@@ -58,8 +58,9 @@ public class UploadController {
 				try {
 					File serverFile = new File("tmp_images/" + UUID.randomUUID().toString().substring(0,6).replaceAll("-",  "") + "_" + System.currentTimeMillis());
 					File tempFile = new File("tmp_images/" + UUID.randomUUID().toString().substring(0,6).replaceAll("-",  "") + "_" + System.currentTimeMillis());
-					
-					System.out.println("Got Here #1");
+					tempFile.getParentFile().mkdirs();
+					tempFile.createNewFile();
+					serverFile.createNewFile();
 					byte[] bytes = file.getBytes();
 					BufferedOutputStream stream = new BufferedOutputStream(
 							new FileOutputStream(tempFile));

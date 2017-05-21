@@ -40,8 +40,8 @@ public class RecipesApplication extends SpringBootServletInitializer implements 
 		/*if ( userService.findByUsername("snakemzm") == null ) {
 			createUserWithRoles();
 		}
-		manageFiles();
 		*/
+		manageFiles();
 	}
 	
 private void createUserWithRoles() {
