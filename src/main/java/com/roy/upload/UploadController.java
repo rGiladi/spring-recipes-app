@@ -18,6 +18,7 @@ import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.CacheControl;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,13 +32,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class UploadController {
-	 	
+	 
 	@ResponseBody
 	@RequestMapping(value="/image/{img}", method= RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> getImage(@PathVariable("img") String img) {
 		try {
 			File image = new File("images/" + img);
-			return ResponseEntity.ok().lastModified(image.lastModified()).cacheControl(CacheControl.maxAge(30, TimeUnit.DAYS)).body(FileUtils.readFileToByteArray(image));
+			return ResponseEntity.ok().lastModified(image.lastModified()).cacheControl(CacheControl.maxAge(259200, TimeUnit.SECONDS)).body(FileUtils.readFileToByteArray(image));
 		} catch( Exception ex) {
 			return null;
 		}
