@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import com.roy.models.Role;
 import com.roy.models.User;
@@ -18,6 +19,7 @@ import com.roy.security.Services.UserService;
 
 @SpringBootApplication
 @EnableScheduling
+@EnableCaching
 public class RecipesApplication extends SpringBootServletInitializer implements CommandLineRunner {
 	
 	public static void main(String[] args) {
