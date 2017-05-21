@@ -125,6 +125,12 @@
 	}
 }
 
+@media screen and ( max-width: 450px ) {
+	.recipe_img {
+		max-height: 240px;
+	}
+}
+
 @media screen and ( max-width: 361px ) {
 	.nav-link {
 		font-size: 0.95em;

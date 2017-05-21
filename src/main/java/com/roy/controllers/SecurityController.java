@@ -67,6 +67,7 @@ public class SecurityController {
 	        return "redirect:/";
     	}
     	else {
+    		bindingResult.reject("no_bot", "חובה לסמן \"אני לא רובוט \"");
     		return "security_register";
     	}
     }

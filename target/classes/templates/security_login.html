@@ -26,7 +26,7 @@
 
 <div class="form_wrapper form_rl col-lg-4">
 	<form class="log_reg_form" action="#" th:action="@{/login}" method="post">
-		<p th:text="${error}"></p>
+		<p style="text-align: right; color: #a94442;" th:text="${error}"></p>
 		
 		<label class="custom_label" for="username">שם משתמש</label>
 		<input name="username" class="form-control form_input" type="text" autofocus="true" />

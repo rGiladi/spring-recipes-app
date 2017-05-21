@@ -24,8 +24,8 @@
 <div th:replace="template :: page_overlay"></div>
 <div class="form_wrapper form_rl col-lg-4">
 	<form class="log_reg_form" action="#" th:action="@{/registration}" th:object="${userForm}" method="post">
-		<ul th:if="${#fields.hasErrors('*')}" >
-			<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+		<ul style="list-style: none; padding-right: 0;" th:if="${#fields.hasErrors('*')}" >
+			<li style="text-align:right; margin-top: 3px; color:#a94442;" th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 		</ul>
 		<label class="custom_label" for="username">שם משתמש</label>
 		<input th:field="*{username}" type="text" class="form-control" />
@@ -41,5 +41,6 @@
 	</form>
 </div>
 <div th:replace="template :: scripts"></div>
+<script src="/js/register.js"></script>
 </body>
 </html>
