@@ -56,9 +56,8 @@ public class UploadController {
 		if (!file.isEmpty()) {
 			if (contentTypes.contains(file.getContentType()) ) {
 				try {
-					
 					File serverFile = new File("tmp_images/" + UUID.randomUUID().toString().substring(0,6).replaceAll("-",  "") + "_" + System.currentTimeMillis());
-					File tempFile = new File("tmp_images/" + UUID.randomUUID().toString());
+					File tempFile = new File("tmp_images/" + UUID.randomUUID().toString().substring(0,6).replaceAll("-",  "") + "_" + System.currentTimeMillis());
 					
 					byte[] bytes = file.getBytes();
 					BufferedOutputStream stream = new BufferedOutputStream(
