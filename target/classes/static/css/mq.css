@@ -74,6 +74,7 @@
 	.recipe_img {
 		height: 100%;
 		width: 100%;
+		max-height: 190px;
 	}
 	
 	.recipe_content_wrapper {

@@ -58,7 +58,9 @@ public class UploadController {
 				try {
 					File serverFile = new File("tmp_images/" + UUID.randomUUID().toString().substring(0,6).replaceAll("-",  "") + "_" + System.currentTimeMillis());
 					File tempFile = new File("tmp_images/" + UUID.randomUUID().toString().substring(0,6).replaceAll("-",  "") + "_" + System.currentTimeMillis());
-					tempFile.getParentFile().mkdirs();
+					if (!tempFile.isDirectory()) {
+						tempFile.getParentFile().mkdirs();
+					}
 					tempFile.createNewFile();
 					serverFile.createNewFile();
 					byte[] bytes = file.getBytes();
