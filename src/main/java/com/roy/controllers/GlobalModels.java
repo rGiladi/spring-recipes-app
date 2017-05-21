@@ -8,8 +8,11 @@ import com.roy.models.Search;
 
 @ControllerAdvice
 public class GlobalModels {
+	
+	String version = "1.2";
 	@ModelAttribute
 	public void globalAttributes(Model model) {
 		model.addAttribute("search", new Search());
+		model.addAttribute("static_version", version);
 	}
 }

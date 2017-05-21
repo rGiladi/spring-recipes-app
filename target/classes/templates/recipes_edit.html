@@ -4,9 +4,9 @@
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	<title>ארוחות</title>
 	<head th:replace="template :: styles"></head>
-	<link rel="stylesheet" href="/css/addrecipe.css" />
-	<link rel="stylesheet" href="/css/ingridients_price.css" />
-	<link sec:authorize="isAnonymous()" rel="stylesheet" href="/css/login_register.css" />
+	<link rel="stylesheet" th:href="'/css/addrecipe.css?v=' + ${static_version}" />
+	<link rel="stylesheet" th:href="'/css/ingridients_price.css?v=' + ${static_version}" />
+	<link sec:authorize="isAnonymous()" rel="stylesheet" th:href="'/css/login_register.css?v=' + ${static_version}" />
 	<style>
 		.menu_addrecipe {
 			color: #363e44 !important;
@@ -90,7 +90,7 @@
 	</div>
 </div>
 <div th:replace="template :: scripts"></div>
-<script src="/js/js_addrecipe.js"></script>
+<script th:src="'/js/js_addrecipe.js?v=' + ${static_version}"></script>
 <script th:inline="javascript">
 	$('.tchecked').each(function() {
 		$(this)[0].checked = true;

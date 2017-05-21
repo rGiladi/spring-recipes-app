@@ -41,6 +41,6 @@
 	</form>
 </div>
 <div th:replace="template :: scripts"></div>
-<script src="/js/register.js"></script>
+<script th:src="'/js/register.js?v=' + ${static_version}"></script>
 </body>
 </html>

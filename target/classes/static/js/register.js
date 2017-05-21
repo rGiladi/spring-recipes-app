@@ -1,5 +1,5 @@
 var username = document.getElementById('username');
-username.addEventListener('keyup', function() {
+username.addEventListener('focusout', function() {
 	if (this.value.trim() != this.value) {
 		toast('שם המשתמש לא יכול להתחיל או להסתיים ברווח');
 		this.value = this.value.trim();

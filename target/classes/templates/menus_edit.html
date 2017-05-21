@@ -6,9 +6,9 @@
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	<title>תפריטים</title>
 	<head th:replace="template :: styles"></head>
-	<link rel="stylesheet" href="/css/addmenu.css" />
-	<link rel="stylesheet" href="/css/ingridients_price.css" />
-	<link sec:authorize="isAnonymous()" rel="stylesheet" href="/css/login_register.css" />
+	<link rel="stylesheet" th:href="'/css/addmenu.css?v=' + ${static_version}" />
+	<link rel="stylesheet" th:href="'/css/ingridients_price.css?v=' + ${static_version}" />
+	<link sec:authorize="isAnonymous()" rel="stylesheet" th:href="'/css/login_register.css?v=' + ${static_version}" />
 </head>
 <body>
 <div th:replace="template :: navigation"></div>
@@ -198,6 +198,6 @@
 	</div>
 </div>
 <div th:replace="template :: scripts"></div>
-<script src="/js/js_addmenu.js"></script>
+<script th:src="'/js/js_addmenu.js?v=' + ${static_version}"></script>
 </body>
 </html>

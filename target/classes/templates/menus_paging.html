@@ -6,9 +6,9 @@
 <meta charset="UTF-8" />
 <title>תפריטים</title>
 	<head th:replace="template :: styles"></head>
-	<link rel="stylesheet" href="/css/menus.css" />
-	<link rel="stylesheet" href="/css/mq_me.css" />
-	<link rel="stylesheet" sec:authorize="hasRole('ADMIN')" href="/css/admin.css" />
+	<link rel="stylesheet" th:href="'/css/menus.css?v=' + ${static_version}" />
+	<link rel="stylesheet" th:href="'/css/mq_me.css?v=' + ${static_version}" />
+	<link rel="stylesheet" sec:authorize="hasRole('ADMIN')" th:href="'/css/admin.css?v=' + ${static_version}" />
 </head>
 <body>
 <div th:replace="template :: navigation"></div>
@@ -149,7 +149,7 @@
 	  </div>
 	</div>
 <div th:replace="template :: scripts"></div>
-<script src="/js/show_menu_recipe.js"></script>
-<script sec:authorize="hasRole('ADMIN')" src="/js/show_menu_user.js"></script>
+<script th:src="'/js/show_menu_recipe.js?v=' + ${static_version}"></script>
+<script sec:authorize="hasRole('ADMIN')" th:src="'/js/show_menu_user.js?v=' + ${static_version}"></script>
 </body>
 </html>

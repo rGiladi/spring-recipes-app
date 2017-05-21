@@ -29,10 +29,10 @@
 		<p style="text-align: right; color: #a94442;" th:text="${error}"></p>
 		
 		<label class="custom_label" for="username">שם משתמש</label>
-		<input name="username" class="form-control form_input" type="text" autofocus="true" />
+		<input id="username" name="username" class="form-control form_input" type="text" autofocus="true" />
 		
 		<label class="custom_label" for="password">סיסמא</label>
-		<input name="password" class="form-control form_input" type="password" />
+		<input id="password" name="password" class="form-control form_input" type="password" />
 		<br />
 		<input type="submit" class="btn btn-md btn-secondary btn_submit form-control form_input" value="התחבר"/>
 	</form>
@@ -41,5 +41,6 @@
 </div>
 <p style="text-align:center; margin-top: 20px"><a th:href="@{/registration}">עדיין אין לך משתמש? לחץ  להרשמה!</a></p>
 <div th:replace="template :: scripts"></div>
+<script th:src="'/js/login.js?v=' + ${static_version}"></script>
 </body>
 </html>

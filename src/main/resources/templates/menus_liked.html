@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8" />
 <title>תפריטים</title>
-	<div th:replace="template :: styles"></div>
-	<link rel="stylesheet" href="/css/menus.css" />
+	<head th:replace="template :: styles"></head>
+	<link rel="stylesheet" th:href="'/css/menus.css?v=' + ${static_version}" />
 </head>
 <body>
 <div th:replace="template :: navigation"></div>
@@ -119,6 +119,6 @@
 </div>
 </div>
 <div th:replace="template :: scripts"></div>
-<script src="/js/show_menu_recipe.js"></script>
+<script th:src="'/js/show_menu_recipe.js?v=' + ${static_version}"></script>
 </body>
 </html>
