@@ -46,6 +46,8 @@
 
 .ingridients_table {
 	margin-right: 40px;
+	max-height: 500px;
+	overflow: auto;
 }
 
 
