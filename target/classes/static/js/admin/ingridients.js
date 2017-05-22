@@ -51,11 +51,15 @@ $('.add_ingridient').click(function() {
 	ingridient['priceoz'] = parseFloat($('.ing_price_oz').val());
 	ingridient['priceamount'] = parseFloat($('.ing_price_amount').val());
 	if (ingridient['name'].length <= 0 || ingridient['priceoz'] <= 0 || ingridient['priceamount'] <= 0 ) {
-		alert('שחכת למלא?');
+		alert('שחכת משהו?');
 		return false;
 	}
 	else {
 		var category = $('.ing_category option:selected').attr('id');
+		if ( category == null ) {
+			alert('שחכת משהו?');
+			return false;
+		}
 		$.ajax({
 			url: '/admin/add_ingridient?category=' + category,
 			type: 'post',

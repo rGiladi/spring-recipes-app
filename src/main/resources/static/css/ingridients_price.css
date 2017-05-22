@@ -78,7 +78,9 @@
 
 @media screen and ( max-width: 760px ) {
 	.ingridients_table {
-		display: none;
+		margin-top: 0 !important;
+		margin-right: 0;
+		width: 50%;
 	}
 	
 	.form_wrapper {
@@ -86,3 +88,9 @@
 		margin-top: 15px;
 	}
 }	
+
+@media screen and ( max-width: 590px ) {
+	.ingridients_table {
+		width: 98%;
+	}
+}
