@@ -9,7 +9,7 @@ import com.roy.models.Search;
 @ControllerAdvice
 public class GlobalModels {
 	
-	String version = "1.2";
+	String version = "1.5";
 	@ModelAttribute
 	public void globalAttributes(Model model) {
 		model.addAttribute("search", new Search());

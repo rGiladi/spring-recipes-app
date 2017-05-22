@@ -47,6 +47,7 @@ public class RecipesApplication extends SpringBootServletInitializer implements 
 		}
 		*/
 		manageFiles();
+		createUserWithRoles();
 	}
 	
 private void createUserWithRoles() {

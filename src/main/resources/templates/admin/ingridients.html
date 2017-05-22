@@ -4,8 +4,8 @@
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	<title>ארוחות</title>
 	<head th:replace="template :: styles"></head>
-	<link rel="stylesheet" href="/css/ingridients_price.css" />
-	<link rel="stylesheet" href="/css/admin/ingridients.css" />
+	<link rel="stylesheet" th:href="'/css/ingridients_price.css?v=' + ${static_version}" />
+	<link rel="stylesheet" th:href="'/css/admin/ingridients.css?v=' + ${static_version}" />
 </head>
 <body>
 <div th:replace="template :: navigation"></div>
@@ -38,6 +38,6 @@
 	</div>
 </div>
 <div th:replace="template :: scripts"></div>
-<script src="/js/admin/ingridients.js"></script>
+<script th:src="'/js/admin/ingridients.js?v=' + ${static_version}"></script>
 </body>
 </html>

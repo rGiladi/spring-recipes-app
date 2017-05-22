@@ -40,7 +40,6 @@ $('.add_category').on('click', function() {
 				window.location.reload();
 			}
 			else {
-				console.log('already exists')
 			}
 		}
 	});
@@ -188,13 +187,15 @@ $('.select_by').on('change', function() {
 		$('.mmpil_price2').each(function() {
 			var price = Number($(this).text());
 			$(this).text( addZeroIfNeed(parseFloat( ((price / last_value_by_oz) * selected[0].value).toFixed(3) ) ) );
-			last_value_by_oz = selected[0].value;
 		});
+		last_value_by_oz = selected[0].value;
 	}
 });
 
 function addZeroIfNeed(n) {
 	var s = n.toString();
-	
-	return s.split('.')[1].length == 1 ? s + '0' : n;
+	if ( s.split('.').length > 1) {
+		return s.split('.')[1].length == 1 ? s + '0' : n;
+	}
+	return s + '.00';
 }

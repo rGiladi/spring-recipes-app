@@ -53,7 +53,6 @@ public class AdminIngridientsController {
 	@ResponseBody Ingridient addIngridient(@RequestBody Ingridient ing, @RequestParam(name="category") long category) {
 		ing.setIngridientCategory(ingCatRepo.findOne(category));
 		if (ing.getIngridientCategory() != null) {
-			System.out.println("name ->" + ing.getName());
 			ingRepo.save(ing);
 			ing.setIngridientCategory(null);
 			return ing;
