@@ -180,8 +180,8 @@ $('.select_by').on('change', function() {
 		$('.mmpil_price').each(function() {
 			var price = Number($(this).text());
 			$(this).text( addZeroIfNeed(parseFloat(( (price / last_value_by_amount) * selected[0].value).toFixed(3) )) 	);
-			last_value_by_amount = selected[0].value;
 		});
+		last_value_by_amount = selected[0].value;
 	}
 	else {
 		$('.mmpil_price2').each(function() {
