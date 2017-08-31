@@ -36,21 +36,14 @@ public class RecipesApplication extends SpringBootServletInitializer implements 
 	
 	@Autowired
 	private RoleRepository roleRepository;
-	
-	@Autowired
-	private UserService userService;
 
 	@Override
 	public void run(String... arg0) throws Exception {
-		/*if ( userService.findByUsername("snakemzm") == null ) {
-			createUserWithRoles();
-		}
-		*/
 		manageFiles();
-		createUserWithRoles();
+		createRoles();
 	}
 	
-private void createUserWithRoles() {
+private void createRoles() {
 		
 		Role user_role = new Role(1, "ROLE_USER");
 		Role admin_role = new Role(2, "ROLE_ADMIN");
@@ -58,17 +51,6 @@ private void createUserWithRoles() {
 		roleRepository.save(user_role);
 		roleRepository.save(admin_role);
 		
-		try {
-			User user = userService.findByUsername("snakemzm");
-			
-			if ( user == null ) {
-				user = new User(1, "snakemzm", "123qwaszx", "roi7giladi@gmail.com");
-			}
-			user.setRoles(new HashSet<>(roleRepository.findAll()));
-			user.setPassword("123qwaszx");
-			
-			userService.save(user);
-		} catch(Exception ex) {}
 	}
 	
 private void manageFiles() {

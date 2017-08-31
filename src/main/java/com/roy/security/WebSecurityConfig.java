@@ -46,7 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.deleteCookies("webrecipes_remember_me")
 				.and()
 			.rememberMe()
-				.key("HZ111Pkllkaz22#$%1zzzap!@#$")
 				.userDetailsService(userDetailsService)
 				.rememberMeCookieName("webrecipes_remember_me")
 				.tokenValiditySeconds(2419200)
